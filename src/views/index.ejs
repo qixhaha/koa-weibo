@@ -7,5 +7,14 @@
   <body>
     <h1><%= title %></h1>
     <p>EJS Welcome to <%= title %></p>
+    <hr/>
+    <%- include('widges/user-info',{
+      isMe
+    }) %>
+    <%- include('widges/blog-list',{
+      blogList
+    }) %>
+    <hr/>
+    <!-- <p><%= locals.viewNum%></p> -->
   </body>
 </html>
