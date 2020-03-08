@@ -1,6 +1,6 @@
 // 创建异步链接
 const seq = require('./seq')
-// require('./model');
+require('./model')
 seq.authenticate().then(() => {
     console.log('链接成功')
 }).catch((err) => {

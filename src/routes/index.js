@@ -2,7 +2,7 @@ const router = require('koa-router')()
 
 router.get('/', async (ctx, next) => {
     // console.log('session',ctx.session);
-
+    // throw Error()
     await ctx.render('index', {
         title: 'Hello Koa 2!',
         isMe: true,
