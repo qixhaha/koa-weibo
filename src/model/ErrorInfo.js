@@ -17,4 +17,14 @@ module.exports = {
         errno: 10002,
         message: '注册失败，请重试'
     },
+    // 登录失败
+    loginFailInfo: {
+        errno: 10004,
+        message: '登录失败，用户名或密码错误'
+    },
+    // 未登录
+    loginCheckFailInfo: {
+        errno: 10005,
+        message: '您尚未登录'
+    },
 }
