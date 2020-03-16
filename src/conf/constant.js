@@ -3,5 +3,5 @@
  * @author qixu
  */
 module.exports = {
-    DEFAULT_PICTURE:'https://dwz.cn/rnTnftZs' 
+    DEFAULT_PICTURE:'https://dwz.cn/rnTnftZs.png' 
 }
