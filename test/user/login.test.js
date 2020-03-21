@@ -58,12 +58,15 @@ test('登录，银海成功',async()=>{
     })
     expect(res.body.errno).toBe(0)
     // let  resCookie = res.headers['set-cookie'] 
-    const resCookie = res.headers['set-cookie'].join(';')
-    const str1 = resCookie.match(/weibo.sid=(\S*);\s/)[0]
-    const str2 = resCookie.match(/weibo.sid.sig=(\S*);\s/)[0]
-    console.log('str1',str1)
-    console.log('str12',str2)
-    COOKIE = str1 + str2
+    // const resCookie = res.headers['set-cookie'].join(';')
+    // const str1 = resCookie.match(/weibo.sid=(\S*);\s/)[0]
+    // const str2 = resCookie.match(/weibo.sid.sig=(\S*);\s/)[0]
+    // console.log('str1',str1)
+    // console.log('str12',str2)
+    // COOKIE = str1 + str2
+    
+    // 获取 cookie
+    COOKIE = res.headers['set-cookie'].join(';')
 })
 // 删除该用户
 
