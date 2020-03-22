@@ -3,5 +3,6 @@
  * @author qixu
  */
 module.exports = {
-    DEFAULT_PICTURE:'https://dwz.cn/rnTnftZs.png' 
+    DEFAULT_PICTURE:'https://dwz.cn/rnTnftZs.png',
+    PAGE_SIZE: 5,
 }

@@ -8,6 +8,7 @@ const {loginCheck} = require('../../middlewares/loginChecks')
 const { genValidator } = require('../../middlewares/validator')
 const blogValidate = require('../../validator/blog')
 const {create} = require('../../controller/blog-home')
+const {getProfileBlogList} = require('../../controller/blog-profile')
 router.prefix('/api/blog')
 // 创建微博
 router.post('/create',loginCheck,genValidator(blogValidate),async (ctx,next)=>{
@@ -19,5 +20,4 @@ router.post('/create',loginCheck,genValidator(blogValidate),async (ctx,next)=>{
         image
     })
 })
-
 module.exports = router

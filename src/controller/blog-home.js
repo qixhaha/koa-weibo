@@ -22,6 +22,9 @@ async function create({userId,content,image}){
         return new ErrorModel(createBlogFailInfo)
     }
 }
+
+
+
 module.exports = {
     create
 }

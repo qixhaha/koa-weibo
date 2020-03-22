@@ -1,0 +1,42 @@
+<%- include('layout/header', { title: '微博 - 个人主页', isNav: true, list: true })%>
+<div class="container margin-top-20">
+    <!-- 左侧 -->
+    <div class="row">
+        <div class="col-8">
+            <h4 class="margin-bottom-20 padding-bottom-10 border-bottom">个人空间</h4>
+            <%if (blogData.isEmpty){ %>
+                <div>
+                    <center>暂无数据</center>
+                </div>
+            <%}else{%>
+                <!-- 微博列表 第一页 -->
+                <div id="container-weibo-list" class="weibo-list">
+                    <%- include('widges/blog-list',{
+                        blogList:blogData.blogList
+                    })%>
+                </div>
+                <!-- 微博列表结束 -->
+                <!-- 加载更多 -->
+                <%if (blogData.count > blogData.blogList.length){%>
+                    <%- include('widges/load-more',{
+                        pageSize:blogData.pageSize,
+                        pageIndex:blogData.pageIndex,
+                        count:blogData.count,
+                        containerSelector:'#container-weibo-list',
+                        api:'/api/profile/loadMore/'+userData.userInfo.userName
+                    })%>
+                <%}%> <!--加载更多结束-->
+            <%}%>
+        </div>
+        <!-- 右侧 -->
+        <div class="col-4">
+            <!-- 个人信息 -->
+            <div class="right-item">
+                <%-include('widges/user-info',{
+                    userInfo:userData.userInfo,
+                    isMe:userData.isMe
+                })%>
+            </div>
+        </div>
+    </div>
+</div>
