@@ -4,13 +4,25 @@
  */
 const User = require('./User')
 const Blog = require('./Blog')
-module.exports = {
-    User,
-    Blog
-}
-
+const UserRelation = require('./UserRelation')
+ 
 // 定义外键
 
 Blog.belongsTo(User,{
     foreignKey:'userId'
 })
+
+UserRelation.belongsTo(User,{
+    foreignKey:'followerId'
+})
+
+// 多对一 查询有多少人关注这个人了  通过userId这个外键
+User.hasMany(UserRelation,{
+    foreignKey:'userId'
+})
+
+module.exports = {
+    User,
+    Blog,
+    UserRelation
+}
