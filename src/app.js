@@ -9,7 +9,6 @@ const logger = require('koa-logger')
 const session = require('koa-generic-session')
 const redisStore = require('koa-redis')
 const koaStatic = require('koa-static')
-const index = require('./routes/index')
 const squareAPIRouter = require('./routes/api/blog-square')
 const utilsAPIRouter = require('./routes/api/utils')
 const errorViewRouter = require('./routes/view/error')
@@ -54,14 +53,13 @@ app.use(session({
     })
 }))
 // routes
-app.use(index.routes(), index.allowedMethods())
+app.use(blogViewRouter.routes(), blogViewRouter.allowedMethods())
 app.use(squareAPIRouter.routes(), squareAPIRouter.allowedMethods())
 app.use(utilsAPIRouter.routes(), utilsAPIRouter.allowedMethods())
 app.use(userAPIRouter.routes(), userAPIRouter.allowedMethods())
 app.use(profileAPIRouter.routes(), profileAPIRouter.allowedMethods())
 app.use(userViewRoouter.routes(), userViewRoouter.allowedMethods())
 app.use(homeAPIRouter.routes(), homeAPIRouter.allowedMethods())
-app.use(blogViewRouter.routes(), blogViewRouter.allowedMethods())
 app.use(errorViewRouter.routes(), errorViewRouter.allowedMethods())
 // error-handling
 app.on('error', (err, ctx) => {

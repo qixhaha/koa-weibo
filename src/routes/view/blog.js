@@ -8,8 +8,46 @@ const { isExist } = require('../../controller/user')
 const {getProfileBlogList} = require('../../controller/blog-profile')
 const { getFans,getFollowers } = require('../../controller/user-relation')
 const {getSquareBlogList} = require('../../controller/blog-square')
+const { getHomeBlogList } = require('../../controller/blog-home')
+
 router.get('/',loginRedirect,async (ctx,next)=>{
-    await ctx.render('index')
+    // await ctx.render('index')
+    console.log('微博列表')
+    const userInfo = ctx.session.userInfo
+    const {id:userId} = userInfo
+
+    // 获取第一页数据
+     const result = await getHomeBlogList(userId)
+     const { isEmpty, blogList, pageSize, pageIndex, count } = result.data
+
+     // 获取粉丝
+     const  fansResult = await getFans(userId)
+     const {count:fansCount,fansList} = fansResult.data
+        // 获取关注人列表
+    const followersResult = await getFollowers(userId)
+    const { count: followersCount, followersList } = followersResult.data
+    console.log('微博列表',blogList)
+    await ctx.render('index', {
+        blogData: {
+            isEmpty,
+            blogList,
+            pageSize,
+            pageIndex,
+            count
+        },
+        userData: {
+            userInfo,
+            fansData: {
+                count: fansCount,
+                list: fansList
+            },
+            followersData: {
+                count: followersCount,
+                list: followersList
+            }
+            // atCount
+        }
+    })
 })
 // 个人主页
 router.get('/profile',loginRedirect,async (ctx,next)=>{

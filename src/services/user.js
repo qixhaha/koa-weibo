@@ -4,6 +4,7 @@
  */
 const {User} = require('../db/model/index')
 const {formatUser} = require('./_format')
+const { addFollower } = require('./user-relation')
 /**
  * 获取用户信息 (可能用在)
  * @param {string} userName 
@@ -42,13 +43,16 @@ async function getUserInfo(userName,password){
  * @param {string} nickNaem  别名
  */
 async function createUser({userName,password,gender = 3,nickName}){
-    const result = User.create({
+    const result = await User.create({
         userName,
         password,
         nickName:nickName || userName,
         gender
     })
     const data = result.dataValues
+
+    // 创建用户的时候 自己关注自己  （为了首页方便获取数据）
+    await addFollower(data.id,data.id)
     return data
 }
 /**
